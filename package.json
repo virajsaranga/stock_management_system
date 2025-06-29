@@ -1,0 +1,14 @@
+{
+  "name": "stock-management-fullstack",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^7.0.0"
+  },
+  "dependencies": {
+    "@mui/x-data-grid": "^8.6.0"
+  }
+}
