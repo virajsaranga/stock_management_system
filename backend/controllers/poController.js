@@ -20,7 +20,7 @@ exports.generatePO = async (req, res) => {
     supplier,
     approved: true,
     totalCost,
-    pdfPath: '', // TODO: fill this when generating PDF later
+    pdfPath: '', //
   });
 
   await po.save();
