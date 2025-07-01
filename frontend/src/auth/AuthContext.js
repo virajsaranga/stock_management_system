@@ -1,30 +1,23 @@
-// import { createContext, useContext, useState } from "react";
-
-// export const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [user, setUser] = useState(null);
-
-//   return (
-//     <AuthContext.Provider value={{ user, setUser }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-
-// export const useAuth = () => useContext(AuthContext);
-
-// src/auth/AuthContext.jsx
-// src/auth/AuthContext.jsx
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
-    setUser(userData);
+  useEffect(() => {
+    // Auto-login if token exists in localStorage
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    if (token && role) {
+      setUser({ token, role });
+    }
+  }, []);
+
+  const login = ({ token, role }) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("role", role);
+    setUser({ token, role });
   };
 
   const logout = () => {
@@ -40,8 +33,10 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom hook
 export const useAuth = () => useContext(AuthContext);
+
+
+
 
 
 
