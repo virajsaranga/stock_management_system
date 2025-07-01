@@ -6,7 +6,7 @@ const { authenticate, authorizeRoles } = require("../middleware/authMiddleware")
 router.get("/", authenticate, stockController.getAllStock);
 router.post("/", authenticate, authorizeRoles("admin", "manager"), stockController.createStock);
 router.put("/:id", authenticate, authorizeRoles("admin", "manager"), stockController.updateStock);
-router.delete("/:id", authenticate, authorizeRoles("admin"), stockController.deleteStock);
+ router.delete("/:id", authenticate, authorizeRoles("admin", "manager"), stockController.deleteStock);
 
 module.exports = router;
 
