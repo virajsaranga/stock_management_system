@@ -29,10 +29,9 @@ const StockItemsPage = () => {
   });
   const [error, setError] = useState(null);
 
-  // ✅ Get token safely
+  
   const token = localStorage.getItem("token");
 
-  // ✅ Axios config with fallback
   const config = token
     ? {
         headers: {
@@ -41,7 +40,6 @@ const StockItemsPage = () => {
       }
     : {};
 
-  // ✅ Fetch stock items
   const fetchItems = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/stocks", config);
@@ -200,6 +198,7 @@ const StockItemsPage = () => {
           <TextField
             label="Unit (e.g., kg, pcs)"
             name="unit"
+            type="text"
             value={form.unit}
             onChange={handleChange}
             fullWidth

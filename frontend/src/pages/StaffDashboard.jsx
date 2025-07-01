@@ -15,23 +15,24 @@ const StaffDashboard = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({ name: "", role: "" });
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
+useEffect(() => {
+  const user = localStorage.getItem("user");
+  if (user) {
+    const parsedUser = JSON.parse(user);
+    console.log("Parsed user:", parsedUser);
 
-    if (!storedUser || !token) {
-      navigate("/login");
-      return;
-    }
-
-    const parsedUser = JSON.parse(storedUser);
-    if (parsedUser.role !== "staff") {
+    // ✅ Safe check
+    if (parsedUser?.role?.toLowerCase() !== "staff") {
       navigate("/unauthorized");
       return;
     }
+  } else {
+    // If no user found in localStorage, redirect
+    navigate("/unauthorized");
+  }
+}, []);
 
-    setUser(parsedUser);
-  }, [navigate]);
+ 
 
   const actions = [
     {
@@ -80,7 +81,7 @@ const StaffDashboard = () => {
                     Go
                   </Button>
                 </CardActions>
-              </Card>
+              </Card> 
             </Grid>
           ))}
         </Grid>

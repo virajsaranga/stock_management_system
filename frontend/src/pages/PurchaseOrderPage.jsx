@@ -1,4 +1,3 @@
-// === PAGE 2: PurchaseOrderPage.jsx ===
 import React, { useEffect, useState, useContext } from "react";
 import axios from "../api/axios";
 import { AuthContext } from "../auth/AuthContext";

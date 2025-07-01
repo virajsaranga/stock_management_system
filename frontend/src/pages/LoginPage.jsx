@@ -9,7 +9,9 @@ import {
   Typography,
   Alert,
   Paper,
+  Avatar,
 } from "@mui/material";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { useAuth } from "../auth/AuthContext"; // ✅ correct path
 
 const LoginPage = () => {
@@ -17,7 +19,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth(); // ✅ Get context login function
+  const { login } = useAuth(); // ✅ Context login function
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -30,12 +32,12 @@ const LoginPage = () => {
       });
 
       const { token, role } = res.data;
-      login(token, role); // ✅ Update context and localStorage
+      login(token, role); // Save to context & localStorage
 
-      // ✅ Route according to role
+      // Route based on role
       if (role === "admin") navigate("/dashboard");
       else if (role === "manager") navigate("/procurements");
-      else navigate("/stockitems");
+      else navigate("/staffdashboard");
 
     } catch (err) {
       setError("Invalid username or password.");
@@ -43,11 +45,23 @@ const LoginPage = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Paper elevation={3} sx={{ padding: 4, marginTop: 10 }}>
-        <Typography variant="h5" align="center" gutterBottom>
-          Login
-        </Typography>
+    <Container maxWidth="xs">
+      <Paper elevation={4} sx={{ padding: 4, mt: 10, borderRadius: 3 }}>
+        <Box display="flex" flexDirection="column" alignItems="center">
+          <Avatar sx={{ bgcolor: "primary.main", mb: 1 }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography variant="h5" fontWeight="bold" gutterBottom>
+            Sign in
+          </Typography>
+        </Box>
+
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
+
         <form onSubmit={handleLogin}>
           <Box display="flex" flexDirection="column" gap={2}>
             <TextField
@@ -60,15 +74,20 @@ const LoginPage = () => {
             />
             <TextField
               label="Password"
-              variant="outlined"
               type="password"
+              variant="outlined"
               fullWidth
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
             />
-            {error && <Alert severity="error">{error}</Alert>}
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              sx={{ mt: 1 }}
+            >
               Login
             </Button>
           </Box>
