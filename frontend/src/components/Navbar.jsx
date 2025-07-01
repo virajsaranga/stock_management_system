@@ -1,4 +1,3 @@
-// src/components/Navbar.jsx
 import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -22,7 +21,7 @@ const Navbar = () => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           Stock Management System
         </Typography>
-        {/* You can add user info, logout button, etc here */}
+    
       </Toolbar>
     </AppBar>
   );
