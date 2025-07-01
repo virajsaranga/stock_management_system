@@ -20,10 +20,9 @@ const drawerWidth = 240;
 
 const Sidebar = () => {
   const menuItems = [
-    { text: "Dashboard", icon: <DashboardIcon />, path: "/dashboard" },
     { text: "Procurements", icon: <ShoppingCartIcon />, path: "/procurements" },
     { text: "Purchase Orders", icon: <AssignmentIcon />, path: "/purchase-orders" },
-    { text: "Goods Receipt", icon: <ReceiptIcon />, path: "/slips" },
+    { text: "Goods Receipt", icon: <ReceiptIcon />, path: "/slip-view" },
   ];
 
   return (
