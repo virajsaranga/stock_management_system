@@ -8,6 +8,8 @@ import StockItemsPage from "./pages/StockItemsPage";
 import ProcurementPage from "./pages/ProcurementPage";
 import PurchaseOrderPage from "./pages/PurchaseOrderPage";
 import SlipView from "./pages/SlipView";
+import AddProcurementForm from "./components/AddProcurementForm";
+import StaffDashboard from "./pages/StaffDashboard";
 
 function App() {
   return (
@@ -58,10 +60,31 @@ function App() {
               </PrivateRoute>
             }
           />
+
+          {/* Add Procurement - Protected Route */}
+          <Route
+            path="/procurements/add"
+            element={
+              <PrivateRoute>
+                <AddProcurementForm />
+              </PrivateRoute>
+            }
+          />
+
+          {/* Staff Dashboard - Only for Staff Role */}
+        <Route
+  path="/staffdashboard"
+  element={
+    <PrivateRoute >
+      <StaffDashboard />
+    </PrivateRoute>
+  }
+/>
+      
         </Routes>
       </BrowserRouter>
     </AuthProvider>
   );
 }
- 
+
 export default App;
