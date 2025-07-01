@@ -1,5 +1,3 @@
-// controllers/userController.js
-
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const User = require("../models/User");
@@ -41,7 +39,7 @@ const register = async (req, res) => {
   }
 };
 
-// Login Function (you already have this)
+// Login Function 
 const login = async (req, res) => {
   const { username, password } = req.body;
 
