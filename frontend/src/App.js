@@ -10,6 +10,7 @@ import PurchaseOrderPage from "./pages/PurchaseOrderPage";
 import SlipView from "./pages/SlipView";
 import AddProcurementForm from "./components/AddProcurementForm";
 import StaffDashboard from "./pages/StaffDashboard";
+import RegisterUser from "./pages/RegisterUser";
 
 function App() {
   return (
@@ -72,15 +73,23 @@ function App() {
           />
 
           {/* Staff Dashboard - Only for Staff Role */}
-        <Route
-  path="/staffdashboard"
-  element={
-    <PrivateRoute >
-      <StaffDashboard />
-    </PrivateRoute>
-  }
-/>
-      
+          <Route
+            path="/staffdashboard"
+            element={
+              <PrivateRoute>
+                <StaffDashboard />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/register-user"
+            element={
+              <PrivateRoute>
+                <RegisterUser />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
