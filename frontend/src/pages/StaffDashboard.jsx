@@ -21,13 +21,13 @@ useEffect(() => {
     const parsedUser = JSON.parse(user);
     console.log("Parsed user:", parsedUser);
 
-    // ✅ Safe check
+    //  Safe check
     if (parsedUser?.role?.toLowerCase() !== "staff") {
       navigate("/unauthorized");
       return;
     }
   } else {
-    // If no user found in localStorage, redirect
+   
     navigate("/unauthorized");
   }
 }, []);
