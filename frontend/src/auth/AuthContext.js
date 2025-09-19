@@ -23,7 +23,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("token");
-    localStorage.removeItem("role");
+    localStorage.removeItem("role"); 
   };
 
   return (
@@ -31,9 +31,9 @@ export const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+};    
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuth = () => useContext(AuthContext); 
 
 
 

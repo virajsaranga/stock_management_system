@@ -12,6 +12,7 @@ exports.authenticate = (req, res, next) => {
   });
 };
 
+//identify user role and restrict access to certain routes
 exports.authorizeRoles = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) return res.status(403).send("Access denied");
